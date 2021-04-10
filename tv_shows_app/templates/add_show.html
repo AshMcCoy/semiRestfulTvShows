@@ -14,6 +14,14 @@
                 <h1>Add a New Show</h1>
                 <p class="text-muted">*All fields required*</p>
                 <div class="form-control">
+                {% if messages %}
+                <ul class="messages">
+                    <p class="text-danger"><strong>Errors:</strong></p>
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif%}>{{message}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
                     <form action="{% url 'create_show' %}" method="POST" class="fs-4">
                         {% csrf_token %}
                         <div class="mb-3">
